@@ -27,7 +27,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.andoridproject1.ui.theme.AndoridProject1Theme
+import kotlin.random.Random
 
 class MainActivity : ComponentActivity() {
 
@@ -57,33 +59,23 @@ data class User(
 
 @Composable
 fun MyView(user: User, modifier: Modifier = Modifier) {
-    var number  by remember { mutableIntStateOf(0) }
+    var number by remember { mutableIntStateOf(Random.nextInt(20, 50)) }
 
-    Column {
-        Row {
-            Image(
-                painter = painterResource(R.drawable.ic_picture),
-                contentDescription = "",
-                modifier
-                    .size(50.dp)
-                    .clip(CircleShape)
-            )
-            Text(
-                text = "${user.name} ${user.surname}",
-                modifier = modifier
-            )
-        }
+    Column(modifier = Modifier.padding(20.dp)) {
         Row {
             Text(
                 text = "$number", modifier = Modifier
                     .padding(10.dp)
-                    .alpha(0.8f), color = Color.Blue
+                    .alpha(0.8f), color = Color.Blue,
+                fontSize = 50.sp
             )
-            Button(onClick = { number++ }) { Text("+1") }
-        }
-        Text(text = user.addressLine2)
-        Text(text = user.zipCode)
 
+        }
+        Row {
+            Button(onClick = { number++ }) { Text("+2") }
+            Button(onClick = { number++ }) { Text("+5") }
+            Button(onClick = { number++ }) { Text("-7") }
+        }
     }
 }
 
