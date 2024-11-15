@@ -57,9 +57,25 @@ data class User(
     val zipCode: String
 )
 
+
 @Composable
 fun MyView(user: User, modifier: Modifier = Modifier) {
+
     var number by remember { mutableIntStateOf(Random.nextInt(20, 50)) }
+    var noTrials by remember { mutableIntStateOf(0) }
+
+    fun endLevel(){
+        noTrials = 0
+    }
+
+    fun nextTrial(){
+        noTrials++
+
+        if(number==0){
+            endLevel()
+        }
+    }
+
 
     Column(modifier = Modifier.padding(20.dp)) {
         Row {
@@ -72,9 +88,15 @@ fun MyView(user: User, modifier: Modifier = Modifier) {
 
         }
         Row {
-            Button(onClick = { number++ }) { Text("+2") }
-            Button(onClick = { number++ }) { Text("+5") }
-            Button(onClick = { number++ }) { Text("-7") }
+            Button(onClick = {
+                number += 2
+                nextTrial()
+            }) { Text("+2") }
+            Button(onClick = { number += 5 }) { Text("+5") }
+            Button(onClick = { number -= 7 }) { Text("-7") }
+        }
+        Row {
+            Text("Liczba prób: $noTrials")
         }
     }
 }
