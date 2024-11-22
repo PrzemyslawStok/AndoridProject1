@@ -1,6 +1,5 @@
 package com.example.andoridproject1
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,14 +11,22 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.andoridproject1.ui.theme.AndoridProject1Theme
+import kotlin.random.Random
 
-class MenuActivity : ComponentActivity() {
+class Game2Activity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +34,7 @@ class MenuActivity : ComponentActivity() {
         setContent {
             AndoridProject1Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MenuView(
-                        this,
+                    Game2View(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -37,26 +43,25 @@ class MenuActivity : ComponentActivity() {
     }
 }
 
+
 @Composable
-fun MenuView(activity: ComponentActivity, modifier: Modifier = Modifier) {
+fun Game2View(modifier: Modifier) {
+
     Column(modifier = Modifier.padding(20.dp)) {
-        Button(onClick = {
-            val intent = Intent(activity, Game1Activity::class.java)
-            activity.startActivity(intent)
-        }) { Text("Game1") }
-        Button(onClick = {val intent = Intent(activity, Game2Activity::class.java)
-            activity.startActivity(intent) }) { Text("Game2") }
-        Button(onClick = { }) { Text("Game3") }
+        Row {
+            Text(
+                text = "next view",
+                fontSize = 50.sp
+            )
 
-
+        }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun MenuPreview() {
+fun Game2Preview() {
     AndoridProject1Theme {
-        //MenuView()
+        //Game2View()
     }
 }
-
