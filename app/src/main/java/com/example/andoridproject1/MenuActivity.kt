@@ -26,7 +26,6 @@ class MenuActivity : ComponentActivity() {
             AndoridProject1Theme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     MenuView(
-                        User("Przemysław", "Stokłosa", "Bielsko-Biała", "Wiśniowa", "43-300"),
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -36,7 +35,7 @@ class MenuActivity : ComponentActivity() {
 }
 
 @Composable
-fun MenuView(user: User, modifier: Modifier = Modifier) {
+fun MenuView(modifier: Modifier = Modifier) {
     Column(modifier = Modifier.padding(20.dp)) {
         Row {
             Text(
@@ -52,7 +51,7 @@ fun MenuView(user: User, modifier: Modifier = Modifier) {
 @Composable
 fun MenuPreview() {
     AndoridProject1Theme {
-        MyView(User("Przemysław", "Stokłosa", "Bielsko-Biała", "Wiśniowa", "43-300"))
+        MenuView()
     }
 }
 
