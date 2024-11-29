@@ -1,6 +1,7 @@
 package com.example.andoridproject1
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -48,11 +49,12 @@ class Game2Activity : ComponentActivity() {
 fun Game2View(modifier: Modifier) {
 
     Column(modifier = Modifier.padding(20.dp)) {
+        var i = 10
         Row {
-            Text(
-                text = "next view",
-                fontSize = 50.sp
-            )
+            Button(onClick = {
+                Log.i("tablica","[$i,$i,$i]")
+                i++
+            }) { Text("Start test") }
 
         }
     }
