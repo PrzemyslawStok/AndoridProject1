@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AndoridProject1</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_game_1">Game 1</string>
+    <string name="action_game_2">Game 2</string>
+    <string name="action_game_3">Game 3</string>
+    <string name="choose_game">Choose game</string>
 </resources>

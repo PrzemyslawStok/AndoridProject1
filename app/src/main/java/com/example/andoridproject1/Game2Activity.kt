@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
@@ -22,6 +23,7 @@ import androidx.compose.material3.TopAppBar
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.andoridproject1.ui.theme.AndoridProject1Theme
@@ -53,13 +55,19 @@ fun evaluate(a: Int, b: Int, f1: (Int, Int) -> Int): Int {
 @Composable
 fun MyAppBar() {
     TopAppBar(
-        title = { Text("Moja Aplikacja") },
+        title = { Text("Game 2") },
         actions = {
-            IconButton(onClick = { /* Akcja 1 */ }) {
-                Icon(Icons.Filled.Search, contentDescription = "Szukaj")
+            IconButton(onClick = { /* Action 1 */ }) {
+                Icon(
+                    Icons.Filled.Call,
+                    contentDescription = stringResource(R.string.action_settings)
+                )
             }
-            IconButton(onClick = { /* Akcja 2 */ }) {
-                Icon(Icons.Filled.Settings, contentDescription = "Ustawienia")
+            IconButton(onClick = { /* Action 2 */ }) {
+                Icon(
+                    Icons.Filled.Settings,
+                    contentDescription = stringResource(R.string.action_game_1)
+                )
             }
         }
     )
