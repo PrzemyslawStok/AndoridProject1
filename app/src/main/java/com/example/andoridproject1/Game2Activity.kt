@@ -94,7 +94,7 @@ fun Game2View(modifier: Modifier) {
     val b = 5
     Log.d(tag, "$a+$b = ${sum(a, b)}")
 
-    Column(modifier = Modifier.padding(20.dp)) {
+    Column(modifier = modifier) {
         val array = Array(10) { i -> (i * i * i) }
         Row {
             Button(onClick = {
