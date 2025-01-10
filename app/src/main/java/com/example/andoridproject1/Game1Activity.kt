@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -69,20 +70,20 @@ fun MyAppBarGame1() {
     TopAppBar(
         title = { Text("Game 1") },
         actions = {
-            IconButton(onClick = { /* Action 1 */ }) {
+            IconButton(onClick = {
+                reset()
+            }) {
                 Icon(
-                    Icons.Filled.Call,
-                    contentDescription = stringResource(R.string.action_settings)
-                )
-            }
-            IconButton(onClick = { /* Action 2 */ }) {
-                Icon(
-                    Icons.Filled.Settings,
+                    Icons.Filled.Refresh,
                     contentDescription = stringResource(R.string.action_game_1)
                 )
             }
         }
     )
+}
+
+fun reset(){
+
 }
 
 @Composable
