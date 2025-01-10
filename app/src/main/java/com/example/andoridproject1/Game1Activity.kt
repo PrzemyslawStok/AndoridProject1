@@ -8,9 +8,16 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -20,6 +27,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,7 +41,10 @@ class Game1Activity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AndoridProject1Theme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Scaffold(
+                    topBar = { MyAppBarGame1() },
+                    modifier = Modifier.fillMaxSize()
+                ) { innerPadding ->
                     MyView(
                         User("Przemysław", "Stokłosa", "Bielsko-Biała", "Wiśniowa", "43-300"),
                         modifier = Modifier.padding(innerPadding)
@@ -52,6 +63,27 @@ data class User(
     val zipCode: String
 )
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyAppBarGame1() {
+    TopAppBar(
+        title = { Text("Game 1") },
+        actions = {
+            IconButton(onClick = { /* Action 1 */ }) {
+                Icon(
+                    Icons.Filled.Call,
+                    contentDescription = stringResource(R.string.action_settings)
+                )
+            }
+            IconButton(onClick = { /* Action 2 */ }) {
+                Icon(
+                    Icons.Filled.Settings,
+                    contentDescription = stringResource(R.string.action_game_1)
+                )
+            }
+        }
+    )
+}
 
 @Composable
 fun MyView(user: User, modifier: Modifier = Modifier) {
@@ -59,21 +91,21 @@ fun MyView(user: User, modifier: Modifier = Modifier) {
     var number by remember { mutableIntStateOf(Random.nextInt(20, 50)) }
     var noTrials by remember { mutableIntStateOf(0) }
 
-    fun endLevel(){
+    fun endLevel() {
         noTrials = 0
 
     }
 
-    fun nextTrial(){
+    fun nextTrial() {
         noTrials++
 
-        if(number==0){
+        if (number == 0) {
             endLevel()
         }
     }
 
 
-    Column(modifier = Modifier.padding(20.dp)) {
+    Column(modifier = modifier) {
         Row {
             Text(
                 text = "$number", modifier = Modifier
