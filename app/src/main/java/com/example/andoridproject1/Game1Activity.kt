@@ -43,16 +43,18 @@ class Game1Activity : ComponentActivity() {
         setContent {
             AndoridProject1Theme {
                 Scaffold(
-                    topBar = { MyAppBarGame1() },
+                    topBar = { MyAppBarGame1(this) },
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
-                    MyView(
-                        User("Przemysław", "Stokłosa", "Bielsko-Biała", "Wiśniowa", "43-300"),
+                    MyView(this,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
         }
+    }
+    fun test(){
+
     }
 }
 
@@ -66,12 +68,12 @@ data class User(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyAppBarGame1() {
+fun MyAppBarGame1(activity: Game1Activity) {
     TopAppBar(
         title = { Text("Game 1") },
         actions = {
             IconButton(onClick = {
-                reset()
+                reset(activity)
             }) {
                 Icon(
                     Icons.Filled.Refresh,
@@ -82,12 +84,12 @@ fun MyAppBarGame1() {
     )
 }
 
-fun reset(){
-
+fun reset(activity: Game1Activity){
+    activity.test()
 }
 
 @Composable
-fun MyView(user: User, modifier: Modifier = Modifier) {
+fun MyView(activity: Game1Activity, modifier: Modifier = Modifier) {
 
     var number by remember { mutableIntStateOf(Random.nextInt(20, 50)) }
     var noTrials by remember { mutableIntStateOf(0) }
@@ -134,6 +136,6 @@ fun MyView(user: User, modifier: Modifier = Modifier) {
 @Composable
 fun MyPreview() {
     AndoridProject1Theme {
-        MyView(User("Przemysław", "Stokłosa", "Bielsko-Biała", "Wiśniowa", "43-300"))
+//        MyView()
     }
 }
