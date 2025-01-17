@@ -9,9 +9,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -53,18 +52,10 @@ class Game1Activity : ComponentActivity() {
             }
         }
     }
-    fun test(){
-
+    fun back(){
+        onBackPressed()
     }
 }
-
-data class User(
-    val name: String,
-    val surname: String,
-    val addressLine1: String,
-    val addressLine2: String,
-    val zipCode: String
-)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -80,12 +71,20 @@ fun MyAppBarGame1(activity: Game1Activity) {
                     contentDescription = stringResource(R.string.action_game_1)
                 )
             }
+            IconButton(onClick = {
+                activity.back()
+            }) {
+                Icon(
+                    Icons.Filled.ArrowBack,
+                    contentDescription = stringResource(R.string.action_back)
+                )
+            }
         }
     )
 }
 
 fun reset(activity: Game1Activity){
-    activity.test()
+//    activity.test()
 }
 
 @Composable
