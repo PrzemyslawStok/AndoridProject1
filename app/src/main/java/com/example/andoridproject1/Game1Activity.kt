@@ -20,6 +20,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableIntState
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
@@ -35,31 +37,34 @@ import com.example.andoridproject1.ui.theme.AndoridProject1Theme
 import kotlin.random.Random
 
 class Game1Activity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             AndoridProject1Theme {
+                val resetAction = remember { mutableIntStateOf(0) }
+
                 Scaffold(
-                    topBar = { MyAppBarGame1(this) },
+                    topBar = { MyAppBarGame1(this, resetAction) },
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
-                    MyView(this,
+                    MyView(
+                        this, resetAction,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
         }
     }
-    fun back(){
+
+    fun back() {
         onBackPressed()
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyAppBarGame1(activity: Game1Activity) {
+fun MyAppBarGame1(activity: Game1Activity, resetAction: MutableIntState) {
     TopAppBar(
         title = { Text("Game 1") },
         actions = {
@@ -83,12 +88,12 @@ fun MyAppBarGame1(activity: Game1Activity) {
     )
 }
 
-fun reset(activity: Game1Activity){
+fun reset(activity: Game1Activity) {
 //    activity.test()
 }
 
 @Composable
-fun MyView(activity: Game1Activity, modifier: Modifier = Modifier) {
+fun MyView(activity: Game1Activity, resetAction: MutableIntState, modifier: Modifier = Modifier) {
 
     var number by remember { mutableIntStateOf(Random.nextInt(20, 50)) }
     var noTrials by remember { mutableIntStateOf(0) }
