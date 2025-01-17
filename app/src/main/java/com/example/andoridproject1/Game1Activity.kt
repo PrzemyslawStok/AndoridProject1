@@ -69,6 +69,7 @@ fun MyAppBarGame1(activity: Game1Activity, resetAction: MutableIntState) {
         title = { Text("Game 1") },
         actions = {
             IconButton(onClick = {
+                resetAction.intValue = 5
                 reset(activity)
             }) {
                 Icon(
@@ -90,6 +91,7 @@ fun MyAppBarGame1(activity: Game1Activity, resetAction: MutableIntState) {
 
 fun reset(activity: Game1Activity) {
 //    activity.test()
+
 }
 
 @Composable
@@ -97,6 +99,10 @@ fun MyView(activity: Game1Activity, resetAction: MutableIntState, modifier: Modi
 
     var number by remember { mutableIntStateOf(Random.nextInt(20, 50)) }
     var noTrials by remember { mutableIntStateOf(0) }
+
+    if (resetAction.intValue==5){
+        noTrials = 100
+    }
 
     fun endLevel() {
         noTrials = 0
@@ -132,6 +138,7 @@ fun MyView(activity: Game1Activity, resetAction: MutableIntState, modifier: Modi
         }
         Row {
             Text("Liczba prób: $noTrials")
+            Text("${stringResource(R.string.current_level)}: $noTrials")
         }
     }
 }
