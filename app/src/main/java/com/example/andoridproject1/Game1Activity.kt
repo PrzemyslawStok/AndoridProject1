@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.Button
@@ -81,7 +80,7 @@ fun MyAppBarGame1(activity: Game1Activity, resetAction: MutableIntState) {
                 activity.back()
             }) {
                 Icon(
-                    Icons.AutoMirrored.Filled.ArrowBack,
+                    Icons.Filled.ArrowBack,
                     contentDescription = stringResource(R.string.action_back)
                 )
             }
