@@ -73,7 +73,7 @@ fun Game3View(gameActivity: Game3Activity, modifier: Modifier) {
     Column(modifier = modifier) {
         Row {
             Button(onClick = {
-
+                gameboard.array()
             }) { Text("Rzędy ${gameboard.rows}, Kolumny ${gameboard.cols}") }
 
         }
