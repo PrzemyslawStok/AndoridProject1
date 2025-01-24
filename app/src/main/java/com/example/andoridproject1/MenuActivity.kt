@@ -56,8 +56,10 @@ fun MyActivityActionBar(activity: ComponentActivity) {
     TopAppBar(
         title = { Text(stringResource(R.string.choose_game)) },
         actions = {
-            IconButton(onClick = { val intent = Intent(activity, Game1Activity::class.java)
-                activity.startActivity(intent) }) {
+            IconButton(onClick = {
+                val intent = Intent(activity, Game1Activity::class.java)
+                activity.startActivity(intent)
+            }) {
                 Icon(
                     Icons.Filled.Home,
                     contentDescription = stringResource(R.string.action_game_1)
@@ -91,7 +93,10 @@ fun MenuView(activity: ComponentActivity, modifier: Modifier = Modifier) {
             val intent = Intent(activity, Game2Activity::class.java)
             activity.startActivity(intent)
         }) { Text("Game2") }
-        Button(onClick = { }) { Text("Game3") }
+        Button(onClick = {
+            val intent = Intent(activity, Game3Activity::class.java)
+            activity.startActivity(intent)
+        }) { Text("Game3") }
 
 
     }

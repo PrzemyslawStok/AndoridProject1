@@ -30,6 +30,10 @@
             android:name=".Game1Activity"
             android:exported="true"
             android:theme="@style/Theme.AndoridProject1"></activity>
+        <activity
+            android:name=".Game3Activity"
+            android:exported="true"
+            android:theme="@style/Theme.AndoridProject1"></activity>
     </application>
 
 </manifest>
