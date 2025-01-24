@@ -25,14 +25,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.andoridproject1.ui.theme.AndoridProject1Theme
 
 class Game3Activity : ComponentActivity() {
+    val gameboard = GameBoard(6, 5)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         enableEdgeToEdge()
         setContent {
             AndoridProject1Theme {
                 Scaffold(topBar = { MyAppBar3() }) { innerPadding ->
                     Game3View(
+                        this,
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -64,14 +67,15 @@ fun MyAppBar3() {
 }
 
 @Composable
-fun Game3View(modifier: Modifier) {
+fun Game3View(gameActivity: Game3Activity, modifier: Modifier) {
     val tag = "TAB"
+    val gameboard = gameActivity.gameboard
 
     Column(modifier = modifier) {
         Row {
             Button(onClick = {
 
-            }) { Text("Start test") }
+            }) { Text("Rzędy ${gameboard.rows}, Kolumny ${gameboard.cols}") }
 
         }
     }
