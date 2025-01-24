@@ -68,7 +68,6 @@ fun MyAppBar3() {
 
 @Composable
 fun Game3View(gameActivity: Game3Activity, modifier: Modifier) {
-    val tag = "TAB"
     val gameboard = gameActivity.gameboard
 
     Column(modifier = modifier) {
