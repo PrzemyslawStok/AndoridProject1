@@ -4,13 +4,14 @@ import android.util.Log
 
 class GameBoard(var rows: Int, var cols: Int) {
     private val tag = "tag"
-    private val gameBoard = Array(rows) { IntArray(cols) }
+    private var gameBoard = Array(rows) { IntArray(cols) }
 
     init {
         initGameBoard()
     }
 
     private fun initGameBoard(){
+        gameBoard = Array(rows) { IntArray(cols) }
         for (i in 0..<rows) {
             for (j in 0..<cols) {
                 gameBoard[i][j] = 5
