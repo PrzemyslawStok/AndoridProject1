@@ -14,7 +14,7 @@ class GameBoard(var rows: Int, var cols: Int) {
         gameBoard = Array(rows) { IntArray(cols) }
         for (i in 0..<rows) {
             for (j in 0..<cols) {
-                gameBoard[i][j] = 5
+                gameBoard[i][j] = 1
             }
         }
     }
@@ -26,12 +26,16 @@ class GameBoard(var rows: Int, var cols: Int) {
         initGameBoard()
     }
 
-    private fun printGameBoard() {
-        for (i in 0..<rows)
-            Log.v(tag, "${gameBoard[i].asList()}")
+    fun squareClicked(i: Int, j: Int){
+        if(i in 1..<rows){
+            if(j in 1..<cols){
+
+            }
+        }
     }
 
-    fun array() {
-        printGameBoard()
+    fun printGameBoard() {
+        for (i in 0..<rows)
+            Log.v(tag, "${gameBoard[i].asList()}")
     }
 }

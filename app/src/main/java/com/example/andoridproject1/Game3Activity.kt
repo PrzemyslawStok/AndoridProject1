@@ -73,7 +73,7 @@ fun Game3View(gameActivity: Game3Activity, modifier: Modifier) {
     Column(modifier = modifier) {
         Row {
             Button(onClick = {
-                gameboard.array()
+                gameboard.printGameBoard()
             }) { Text("Rzędy ${gameboard.rows}, Kolumny ${gameboard.cols}") }
 
         }
@@ -87,6 +87,12 @@ fun Game3View(gameActivity: Game3Activity, modifier: Modifier) {
             Button(onClick = {
                 gameboard.changeSize(5, 5)
             }) { Text("Test 2") }
+
+        }
+        Row {
+            Button(onClick = {
+                gameboard.squareClicked(1, 4)
+            }) { Text("Test 3 (pole gry)") }
 
         }
     }
