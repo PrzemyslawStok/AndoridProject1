@@ -42,4 +42,8 @@ class GameBoard(var rows: Int, var cols: Int) {
         for (i in 0..<rows)
             Log.v(tag, "${gameBoard[i].asList()}")
     }
+
+    fun getState(row: Int, col: Int): Int {
+        return gameBoard[row][col]
+    }
 }

@@ -28,12 +28,17 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.andoridproject1.ui.theme.AndoridProject1Theme
+import kotlin.random.Random
 
 class Game3Activity : ComponentActivity() {
     val gameboard = GameBoard(6, 5)
@@ -112,6 +117,7 @@ fun Game3View(gameActivity: Game3Activity, modifier: Modifier) {
 
 @Composable
 fun DrawGameBoard(gameBoard: GameBoard) {
+    var number by remember { mutableIntStateOf(0) }
     val itemsList = (0..<gameBoard.cols * gameBoard.rows).toList()
     LazyVerticalGrid(
         columns = GridCells.Fixed(gameBoard.cols),
@@ -123,12 +129,20 @@ fun DrawGameBoard(gameBoard: GameBoard) {
             Box(
                 modifier = Modifier
                     .size(20.dp)
-                    .background(Color.Gray)
+                    .background(
+                        if (gameBoard.getState(
+                                index / (gameBoard.rows - 1),
+                                index % gameBoard.cols,
+                            ) == 1
+                        ) Color.Gray else Color.Yellow
+                    )
                     .clickable {
                         val col = index % gameBoard.cols
-                        var row: Int = index / (gameBoard.rows - 1)
+                        val row: Int = index / (gameBoard.rows - 1)
+
                         Log.i("tag", "($row,$col) ")
                         gameBoard.squareClicked(row, col)
+                        number++
                     }
             )
 
