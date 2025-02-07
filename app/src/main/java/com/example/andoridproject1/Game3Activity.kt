@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -111,17 +112,24 @@ fun Game3View(gameActivity: Game3Activity, modifier: Modifier) {
 
 @Composable
 fun DrawGameBoard(gameBoard: GameBoard) {
-    val itemsList = (1..10).toList()
+    val itemsList = (0..<gameBoard.cols * gameBoard.rows).toList()
     LazyVerticalGrid(
-        columns = GridCells.Fixed(3),
+        columns = GridCells.Fixed(gameBoard.cols),
         verticalArrangement = Arrangement.spacedBy(1.dp),
         horizontalArrangement = Arrangement.spacedBy(1.dp)
 
     ) {
         items(itemsList) { index ->
-            Box(modifier = Modifier
-                .size(20.dp)
-                .background(Color.Gray))
+            Box(
+                modifier = Modifier
+                    .size(20.dp)
+                    .background(Color.Gray)
+                    .clickable {
+                        val col = index % gameBoard.cols + 1
+                        var row: Int = index / (gameBoard.rows - 1) + 1
+                        Log.i("tag", "($row,$col) ")
+                    }
+            )
 
         }
     }
