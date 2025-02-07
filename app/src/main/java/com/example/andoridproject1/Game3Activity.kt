@@ -125,9 +125,10 @@ fun DrawGameBoard(gameBoard: GameBoard) {
                     .size(20.dp)
                     .background(Color.Gray)
                     .clickable {
-                        val col = index % gameBoard.cols + 1
-                        var row: Int = index / (gameBoard.rows - 1) + 1
+                        val col = index % gameBoard.cols
+                        var row: Int = index / (gameBoard.rows - 1)
                         Log.i("tag", "($row,$col) ")
+                        gameBoard.squareClicked(row, col)
                     }
             )
 

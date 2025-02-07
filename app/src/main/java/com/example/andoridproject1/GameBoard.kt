@@ -10,7 +10,7 @@ class GameBoard(var rows: Int, var cols: Int) {
         initGameBoard()
     }
 
-    private fun initGameBoard(){
+    private fun initGameBoard() {
         gameBoard = Array(rows) { IntArray(cols) }
         for (i in 0..<rows) {
             for (j in 0..<cols) {
@@ -19,19 +19,23 @@ class GameBoard(var rows: Int, var cols: Int) {
         }
     }
 
-    fun changeSize(rows: Int,  cols: Int){
+    fun changeSize(rows: Int, cols: Int) {
         this.rows = rows
         this.cols = cols
 
         initGameBoard()
     }
 
-    fun squareClicked(i: Int, j: Int){
-        if(i in 1..<rows){
-            if(j in 1..<cols){
-
-            }
+    fun squareClicked(row: Int, col: Int) {
+        for (i in row - 1..row + 1) {
+            for (j in col - 1..col + 1)
+                if (i in 0..<rows) {
+                    if (j in 0..<cols) {
+                        gameBoard[i][j] = if (gameBoard[i][j] == 1) 0 else 1
+                    }
+                }
         }
+        printGameBoard()
     }
 
     fun printGameBoard() {
