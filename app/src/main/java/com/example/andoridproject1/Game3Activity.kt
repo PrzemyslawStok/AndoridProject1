@@ -1,12 +1,20 @@
 package com.example.andoridproject1
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.Settings
@@ -20,8 +28,10 @@ import androidx.compose.material3.TopAppBar
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.andoridproject1.ui.theme.AndoridProject1Theme
 
 class Game3Activity : ComponentActivity() {
@@ -68,31 +78,50 @@ fun MyAppBar3() {
 
 @Composable
 fun Game3View(gameActivity: Game3Activity, modifier: Modifier) {
-    val gameboard = gameActivity.gameboard
+    val gameBoard = gameActivity.gameboard
 
     Column(modifier = modifier) {
         Row {
             Button(onClick = {
-                gameboard.printGameBoard()
-            }) { Text("Rzędy ${gameboard.rows}, Kolumny ${gameboard.cols}") }
+                gameBoard.printGameBoard()
+            }) { Text("Rzędy ${gameBoard.rows}, Kolumny ${gameBoard.cols}") }
 
         }
         Row {
             Button(onClick = {
-                gameboard.changeSize(7, 7)
+                gameBoard.changeSize(7, 7)
             }) { Text("Test 1") }
 
         }
         Row {
             Button(onClick = {
-                gameboard.changeSize(5, 5)
+                gameBoard.changeSize(5, 5)
             }) { Text("Test 2") }
 
         }
         Row {
             Button(onClick = {
-                gameboard.squareClicked(1, 4)
+                gameBoard.squareClicked(1, 4)
             }) { Text("Test 3 (pole gry)") }
+
+        }
+        DrawGameBoard(gameBoard)
+    }
+}
+
+@Composable
+fun DrawGameBoard(gameBoard: GameBoard) {
+    val itemsList = (1..10).toList()
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(3),
+        verticalArrangement = Arrangement.spacedBy(1.dp),
+        horizontalArrangement = Arrangement.spacedBy(1.dp)
+
+    ) {
+        items(itemsList) { index ->
+            Box(modifier = Modifier
+                .size(20.dp)
+                .background(Color.Gray))
 
         }
     }
