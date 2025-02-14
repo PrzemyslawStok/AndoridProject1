@@ -1,20 +1,44 @@
 package com.example.andoridproject1
 
 import android.util.Log
+import kotlin.random.Random
 
 class GameBoard(var rows: Int, var cols: Int) {
     private val tag = "tag"
     private var gameBoard = Array(rows) { IntArray(cols) }
+    private var noTrials = 0
 
     init {
         initGameBoard()
+        initLevel(2)
+    }
+
+    fun initLevel(noRandomSquares: Int) {
+        for (square in 1..noRandomSquares) {
+            val row = Random.nextInt(0, rows-1)
+            val col = Random.nextInt(0, cols-1)
+            this.gameBoard[row][col] = 1
+        }
+
+    }
+
+    fun checkLevel(): Boolean {
+        return true
+    }
+
+    fun getNoTrials(): Int {
+        return this.noTrials
+    }
+
+    fun nextTrial() {
+        this.noTrials += 1
     }
 
     private fun initGameBoard() {
         gameBoard = Array(rows) { IntArray(cols) }
         for (i in 0..<rows) {
             for (j in 0..<cols) {
-                gameBoard[i][j] = 1
+                gameBoard[i][j] = 0
             }
         }
     }

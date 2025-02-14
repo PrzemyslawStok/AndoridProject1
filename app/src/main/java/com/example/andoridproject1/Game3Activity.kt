@@ -42,7 +42,7 @@ import com.example.andoridproject1.ui.theme.AndoridProject1Theme
 import kotlin.random.Random
 
 class Game3Activity : ComponentActivity() {
-    val gameboard = GameBoard(6, 5)
+    val gameboard = GameBoard(4, 3)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,34 +96,51 @@ fun Game3View(gameActivity: Game3Activity, modifier: Modifier) {
 fun DrawGameBoard(gameBoard: GameBoard) {
     var number by remember { mutableIntStateOf(0) }
     val itemsList = (0..<gameBoard.cols * gameBoard.rows).toList()
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(gameBoard.cols),
-        verticalArrangement = Arrangement.spacedBy(1.dp),
-        horizontalArrangement = Arrangement.spacedBy(1.dp)
+    var noTrials by remember { mutableIntStateOf(gameBoard.getNoTrials()) }
+    val currentLevel by remember { mutableIntStateOf(1) }
 
-    ) {
-        items(itemsList) { index ->
-            Box(
-                modifier = Modifier
-                    .size(20.dp)
-                    .background(
-                        if (gameBoard.getState(
-                                index / (gameBoard.rows - 1),
-                                index % gameBoard.cols,
-                            ) == 1
-                        ) Color.Gray else Color.Black
-                    )
-                    .clickable {
-                        val col = index % gameBoard.cols
-                        val row: Int = index / (gameBoard.rows - 1)
+    Column {
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(gameBoard.cols),
+            verticalArrangement = Arrangement.spacedBy(1.dp),
+            horizontalArrangement = Arrangement.spacedBy(1.dp)
+
+        ) {
+            items(itemsList) { index ->
+                Box(
+                    modifier = Modifier
+                        .size(20.dp)
+                        .background(
+                            if (gameBoard.getState(
+                                    index / (gameBoard.rows - 1),
+                                    index % gameBoard.cols,
+                                ) == 1
+                            ) Color.Gray else Color.Black
+                        )
+                        .clickable {
+                            val col = index % gameBoard.cols
+                            val row: Int = index / (gameBoard.rows - 1)
 
 //                        Log.i("tag", "($row,$col) ")
-                        gameBoard.squareClicked(row, col)
-                        number++
-                    }
-                    .alpha(1.0f + 0.0f * number)
-            )
+                            gameBoard.squareClicked(row, col)
+                            gameBoard.nextTrial()
+                            noTrials = gameBoard.getNoTrials()
+                            number++
+                        }
+                        .alpha(1.0f + 0.0f * number)
+                )
 
+            }
+        }
+        Row {
+            Text(
+                "${stringResource(R.string.no_trials)}: $noTrials",
+                modifier = Modifier.padding(2.dp)
+            )
+            Text(
+                "${stringResource(R.string.current_level)}: $currentLevel",
+                modifier = Modifier.padding(2.dp)
+            )
         }
     }
 }

@@ -8,4 +8,5 @@
     <string name="action_game_reset">Reset</string>
     <string name="action_back">Back</string>
     <string name="current_level">Aktualny poziom</string>
+    <string name="no_trials">Liczba prób</string>
 </resources>
