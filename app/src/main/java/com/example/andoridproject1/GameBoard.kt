@@ -35,7 +35,7 @@ class GameBoard(var rows: Int, var cols: Int) {
                     }
                 }
         }
-        printGameBoard()
+//        printGameBoard()
     }
 
     fun printGameBoard() {

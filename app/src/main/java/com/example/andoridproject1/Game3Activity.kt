@@ -33,6 +33,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -87,30 +88,6 @@ fun Game3View(gameActivity: Game3Activity, modifier: Modifier) {
     val gameBoard = gameActivity.gameboard
 
     Column(modifier = modifier) {
-        Row {
-            Button(onClick = {
-                gameBoard.printGameBoard()
-            }) { Text("Rzędy ${gameBoard.rows}, Kolumny ${gameBoard.cols}") }
-
-        }
-        Row {
-            Button(onClick = {
-                gameBoard.changeSize(7, 7)
-            }) { Text("Test 1") }
-
-        }
-        Row {
-            Button(onClick = {
-                gameBoard.changeSize(5, 5)
-            }) { Text("Test 2") }
-
-        }
-        Row {
-            Button(onClick = {
-                gameBoard.squareClicked(1, 4)
-            }) { Text("Test 3 (pole gry)") }
-
-        }
         DrawGameBoard(gameBoard)
     }
 }
@@ -134,16 +111,17 @@ fun DrawGameBoard(gameBoard: GameBoard) {
                                 index / (gameBoard.rows - 1),
                                 index % gameBoard.cols,
                             ) == 1
-                        ) Color.Gray else Color.Yellow
+                        ) Color.Gray else Color.Black
                     )
                     .clickable {
                         val col = index % gameBoard.cols
                         val row: Int = index / (gameBoard.rows - 1)
 
-                        Log.i("tag", "($row,$col) ")
+//                        Log.i("tag", "($row,$col) ")
                         gameBoard.squareClicked(row, col)
                         number++
                     }
+                    .alpha(1.0f + 0.0f * number)
             )
 
         }
